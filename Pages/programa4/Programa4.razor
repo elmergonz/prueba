@@ -1,0 +1,19 @@
+@page "/programa/4"
+
+<h1>Programa 4</h1>
+
+<p>Acepte las medidas de los lados de un triangulo determine el tipo de triangulo según sus lados.</p>
+
+<div>
+    Lado 1 <input type="number" @bind-value="@Lados[0]" step=".01">
+    <br>
+    Lado 2 <input type="number" @bind-value="@Lados[1]" step=".01">
+    <br>
+    Lado 3 <input type="number" @bind-value="@Lados[2]" step=".01">
+    <br><br>
+
+    <button class="btn btn-primary" @onclick="GetTipo">Determinar tipo</button>
+    <br><br>
+
+    <p>El tipo de triangulo es: @Tipo</p>
+</div>

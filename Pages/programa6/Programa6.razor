@@ -1,0 +1,41 @@
+@page "/programa/6"
+
+@using tarea2.Data
+@using System.Text.RegularExpressions
+
+@inject WebPageService webPageService
+
+<h1>Programa 6</h1>
+
+<p>Realiza un programa que acepte una URL, determine la cantidad de párrafos e imágenes que contienen estas.</p>
+
+<div>
+    URL <input type="url" @bind-value="@url">
+    <br><br>
+    <button class="btn btn-primary" @onclick="ContarAsync">Contar</button>
+    <br><br>
+
+    @if (@page != "Error" || @page != null)
+    {
+        <p><b>Parrafos: </b>@parrafos</p>
+        <p><b>Imagenes: </b>@imagenes</p>
+    }
+</div>
+
+@code {
+    private string url;
+
+    private String page;
+    
+    private int parrafos;
+    
+    private int imagenes;
+
+    public async Task ContarAsync()
+    {
+        page = await webPageService.GetPageAsync(url);
+        
+        parrafos = Regex.Matches(page, "<p").Count;
+        imagenes = Regex.Matches(page, "<img").Count;
+    }
+}
